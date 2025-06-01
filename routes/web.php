@@ -43,6 +43,7 @@ Route::post('patient/login', [AuthController::class, 'loginp'])->name('patient.l
 Route::get('patient/login', [AuthController::class, 'patient'])->name('patient.login');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/patient_logout', [AuthController::class, 'patient_logout'])->name('patient.logout');
 Route::get('/permission-denied', [AuthController::class, 'roleerror'])->name('auth.errors.role');
 
 

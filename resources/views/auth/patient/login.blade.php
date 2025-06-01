@@ -143,27 +143,28 @@
             </div>
             @endif
 
-    <form id="loginForm" action="{{ route('patient.login.post') }}" method="POST">
-    @csrf
-    <div class="mb-3">
-        <label for="login_id" class="form-label">User ID or Phone</label>
-        <input class="form-control" type="text" id="login_id" name="login_id" required placeholder="Enter User ID or Phone" value="{{ old('login_id') }}">
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <div class="input-group">
-            <input class="form-control" type="password" name="password" id="password" required placeholder="Enter your password">
-            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                <i class="fas fa-eye" id="eyeIcon"></i>
-            </button>
-        </div>
-    </div>
-    <div class="d-grid mb-2">
-        <button class="btn btn-primary btn-lg" type="submit">Log In</button>
-    </div>
-</form>
-
-
+            <form id="loginForm" action="{{ route('patient.login.post') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="emailaddress" class="form-label">Email address</label>
+                    <input class="form-control" type="text" id="emailaddress" name="user_name" required placeholder="Enter Your User Id" value="{{ old('user_name') }}">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input class="form-control" type="password" name="password" id="password" required placeholder="Enter your password">
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                            <i class="fas fa-eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="role-btns d-flex flex-wrap gap-2 mb-3 justify-content-center">
+                    <button type="button" class="btn" onclick="fillLogin('a_1', 'a')">Patient</button>
+                </div>
+                <div class="d-grid mb-2">
+                    <button class="btn btn-primary btn-lg" type="submit">Log In</button>
+                </div>
+            </form>
         </div>
         <div class="side-image-container">
             <!-- Use your uploaded image or SVG here -->
