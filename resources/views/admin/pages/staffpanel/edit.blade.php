@@ -42,9 +42,9 @@
 
                         <!-- Created Date -->
                         <div class="col-md-6 mb-3">
-                            <label for="createdDate" class="form-label">Created Date</label>
-                            <input type="date" name="createdDate" id="createdDate" class="form-control" 
-                                   value="{{ old('createdDate', $staffPanel->createdDate) }}">
+                            <label for="created_at" class="form-label">Created Date</label>
+                            <input type="date" name="created_at" id="created_at" class="form-control" 
+                                   value="{{ old('created_at', $staffPanel->created_at) }}">
                         </div>
 
                         <!-- Submit -->

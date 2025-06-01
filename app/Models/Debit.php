@@ -11,7 +11,7 @@ class Debit extends Model
 
     protected $table = 'debit';
     protected $primaryKey = 'debitAi';
-    protected $fillable = ['userId','debitAmount','debitDetail','createdDate'];
+    protected $fillable = ['userId','debitAmount','debitDetail','created_at'];
 
     public function user()
     {

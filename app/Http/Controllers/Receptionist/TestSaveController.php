@@ -83,6 +83,7 @@ class TestSaveController extends Controller
             'relation'      => 'nullable|string|max:255',
             'title'         => 'nullable|string|max:50',
             'user_name'     => 'required|string',
+            'password'     => 'required|string',
             'name'          => 'required|string|max:255',
             'email'         => 'nullable|email',
             'phone'         => 'nullable|string|max:50',
@@ -110,6 +111,7 @@ class TestSaveController extends Controller
                 'relation'      => $validated['relation'] ?? null,
                 'title'         => $validated['title'] ?? null,
                 'user_name'     => $validated['user_name'],
+                'password'     => $validated['password'],
                 'name'          => $validated['name'],
                 'email'         => $validated['email'] ?? null,
                 'phone'         => $validated['phone'] ?? null,
@@ -123,7 +125,7 @@ class TestSaveController extends Controller
                                    ? $request->input('staffPanelId') : null,
                 'comment'       => $validated['comment'] ?? null,
                 'testDiscount'  => $validated['testDiscount'] ?? 0,
-                'createdDate'   => now(),
+                'created_at'   => now(),
             ]);
 
             // 2) Create CustomerTest rows
@@ -133,7 +135,7 @@ class TestSaveController extends Controller
                     CustomerTest::create([
                         'addTestId'   => $t['addTestId'],
                         'customerId'  => $customer->customerId,
-                        'createdDate' => now(),
+                        'created_at' => now(),
                         'testStatus'  => 'pending',
                         'reportDate'  => null,
                     ]);
@@ -146,7 +148,7 @@ class TestSaveController extends Controller
                 'customerId'  => $customer->customerId,
                 'recieved'    => $validated['recieved'] ?? 0,
                 'pending'     => $validated['pending']  ?? 0,
-                'createdDate' => now(),
+                'created_at' => now(),
             ]);
 
             // 4) Deduct staff panel credits

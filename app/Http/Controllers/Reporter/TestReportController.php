@@ -147,7 +147,7 @@ public function store(Request $request)
             'ctId' => $validatedData['ctId'],
             'reporterId' => Auth::id(),
             'signStatus' => 'pending',
-            'createdDate' => now(),
+            'created_at' => now(),
         ]);
 
         // Store Test Report Child Entries

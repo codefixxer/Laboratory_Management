@@ -2,7 +2,8 @@
 <html lang="en">
    
 @include('admin.layouts.head')
-
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
     <body data-menu-color="light" data-sidebar="default">
 
         <div id="app-layout">

@@ -27,7 +27,7 @@ class StockController extends Controller
             'expDate' => 'required|date',
             'itmQnt' => 'required|integer',
             'itmPrice' => 'required|integer',
-            'createdDate' => 'required|date',
+            'created_at' => 'required|date',
         ]);
 
         Stock::create($request->all());

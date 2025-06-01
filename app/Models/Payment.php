@@ -11,7 +11,7 @@ class Payment extends Model
     public $incrementing = true;
     protected $keyType = 'int';
 
-    public $timestamps = true; // We have createdDate
+    public $timestamps = true; // We have created_at
 
     protected $fillable = [
         'customerId',

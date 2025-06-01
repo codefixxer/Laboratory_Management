@@ -17,13 +17,13 @@ class ReceptionistExpenseReportController extends Controller
         // Only the debits this receptionist created
         $debits = Debit::with('user')
             ->where('userId', $userId)
-            ->orderBy('createdDate', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         // Only the stocks this receptionist added
         $stocks = Stock::with('user')
             ->where('userId', $userId)
-            ->orderBy('createdDate', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         // Totals

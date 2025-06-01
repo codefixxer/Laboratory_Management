@@ -26,7 +26,7 @@ class PaymentsTableSeeder extends Seeder
                     'customerId'  => $customerId,
                     'recieved'    => $received,
                     'pending'     => $pending,
-                    'createdDate' => Carbon::now()->subDays(rand(1, 30)),
+                    'created_at' => Carbon::now()->subDays(rand(1, 30)),
                     'created_at'  => Carbon::now(),
                     'updated_at'  => Carbon::now(),
                 ];

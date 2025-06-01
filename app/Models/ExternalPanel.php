@@ -25,6 +25,6 @@ class ExternalPanel extends Model
         'credits',
         'remainingCredits',
 
-        // 'createdDate' // if you decided to have a separate date column
+        // 'created_at' // if you decided to have a separate date column
     ];
 }

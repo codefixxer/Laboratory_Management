@@ -20,7 +20,7 @@
                 <td>{{ $credit->creditAi }}</td>
                 <td>{{ $credit->creditAmount }}</td>
                 <td>{{ $credit->creditDetail }}</td>
-                <td>{{ $credit->createdDate }}</td>
+                <td>{{ $credit->created_at }}</td>
                 <td>
                     <form action="{{ route('credit.destroy', $credit->creditAi) }}" method="POST">
                         @csrf

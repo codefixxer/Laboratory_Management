@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
             <label>Created Date</label>
-            <input type="date" name="createdDate" class="form-control" required>
+            <input type="date" name="created_at" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-success">Save Stock</button>
     </form>

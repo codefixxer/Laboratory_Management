@@ -20,7 +20,7 @@
                 <td>{{ $debit->debitAi }}</td>
                 <td>{{ $debit->debitAmount }}</td>
                 <td>{{ $debit->debitDetail }}</td>
-                <td>{{ $debit->createdDate }}</td>
+                <td>{{ $debit->created_at }}</td>
                 <td>
                     <form action="{{ route('debit.destroy', $debit->debitAi) }}" method="POST">
                         @csrf

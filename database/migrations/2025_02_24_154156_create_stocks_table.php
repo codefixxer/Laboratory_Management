@@ -15,7 +15,7 @@ class CreateStocksTable extends Migration
             $table->date('expDate');
             $table->integer('itmQnt');
             $table->integer('itmPrice');
-            $table->date('createdDate');
+            $table->date('created_at');
             $table->timestamps();
         });
     }

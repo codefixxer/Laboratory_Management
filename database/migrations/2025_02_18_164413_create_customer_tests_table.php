@@ -14,7 +14,7 @@ return new class extends Migration
             // Link to customers table
             $table->unsignedBigInteger('customerId');
 
-            $table->dateTime('createdDate')->nullable(); // or $table->timestamps()
+            $table->dateTime('created_at')->nullable(); // or $table->timestamps()
             $table->string('testStatus')->nullable(); // e.g. "pending", "collected"
             $table->dateTime('reportDate')->nullable();
             $table->foreign('customerId')

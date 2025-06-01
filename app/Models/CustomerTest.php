@@ -17,7 +17,7 @@ class CustomerTest extends Model
     protected $fillable = [
         'addTestId',
         'customerId',
-        'createdDate',
+        'created_at',
         'testStatus',
         'reportDate',
     ];

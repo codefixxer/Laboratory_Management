@@ -11,7 +11,7 @@ class Credit extends Model
 
     protected $table = 'credit';
     protected $primaryKey = 'creditAi';
-    protected $fillable = ['userId','creditAmount','creditDetail','createdDate'];
+    protected $fillable = ['userId','creditAmount','creditDetail','created_at'];
 
     public function user()
     {

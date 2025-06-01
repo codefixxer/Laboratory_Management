@@ -20,7 +20,7 @@ class StaffPanel extends Model
         'userId',
         'credits',
         'remainingCredits',
-        'createdDate',
+        'created_at',
     ];
 
     // Example relationship to User

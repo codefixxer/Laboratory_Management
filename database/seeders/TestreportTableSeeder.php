@@ -25,7 +25,7 @@ class TestreportTableSeeder extends Seeder
                 'ctId'        => $ctIds[array_rand($ctIds)],
                 'reporterId'  => $reporterIds[array_rand($reporterIds)],
                 'signStatus'  => ['signed', 'pending'][rand(0, 1)],
-                'createdDate' => Carbon::now()->subDays(rand(0, 30)),
+                'created_at' => Carbon::now()->subDays(rand(0, 30)),
                 'created_at'  => Carbon::now(),
                 'updated_at'  => Carbon::now(),
             ];

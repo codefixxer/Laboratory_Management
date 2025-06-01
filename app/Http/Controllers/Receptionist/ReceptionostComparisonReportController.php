@@ -27,13 +27,13 @@ class ReceptionostComparisonReportController extends Controller
 
         // EXPENSES: include user
         $debitRecords  = Debit::with('user')
-            ->where('userId', $userId)->orderBy('createdDate','desc')->get();
+            ->where('userId', $userId)->orderBy('created_at','desc')->get();
 
         $stockRecords  = Stock::with('user')
-            ->where('userId', $userId)->orderBy('createdDate','desc')->get();
+            ->where('userId', $userId)->orderBy('created_at','desc')->get();
 
         $creditRecords = Credit::with('user')
-            ->where('userId', $userId)->orderBy('createdDate','desc')->get();
+            ->where('userId', $userId)->orderBy('created_at','desc')->get();
 
         $totalDebits    = $debitRecords->sum('debitAmount');
         $totalStockCost = $stockRecords->sum(fn($s) => $s->itmQnt * $s->itmPrice);
@@ -49,7 +49,7 @@ class ReceptionostComparisonReportController extends Controller
                 'type'     => 'Debit',
                 'detail'   => $d->debitDetail,
                 'amount'   => $d->debitAmount,
-                'date'     => Carbon::parse($d->createdDate)->toDateString(),
+                'date'     => Carbon::parse($d->created_at)->toDateString(),
                 'added_by' => $d->user->name,
             ];
         }
@@ -58,7 +58,7 @@ class ReceptionostComparisonReportController extends Controller
                 'type'     => 'Stock',
                 'detail'   => "{$s->itemName} ({$s->itmQnt}×₹{$s->itmPrice})",
                 'amount'   => $s->itmQnt * $s->itmPrice,
-                'date'     => Carbon::parse($s->createdDate)->toDateString(),
+                'date'     => Carbon::parse($s->created_at)->toDateString(),
                 'added_by' => $s->user->name,
             ];
         }
@@ -67,7 +67,7 @@ class ReceptionostComparisonReportController extends Controller
                 'type'     => 'Credit',
                 'detail'   => $c->creditDetail,
                 'amount'   => -1 * $c->creditAmount,
-                'date'     => Carbon::parse($c->createdDate)->toDateString(),
+                'date'     => Carbon::parse($c->created_at)->toDateString(),
                 'added_by' => $c->user->name,
             ];
         }

@@ -26,7 +26,7 @@
                 <td>{{ $stock->expDate }}</td>
                 <td>{{ $stock->itmQnt }}</td>
                 <td>{{ $stock->itmPrice }}</td>
-                <td>{{ $stock->createdDate }}</td>
+                <td>{{ $stock->created_at }}</td>
                 <td>
                     <form action="{{ route('stock.destroy', $stock->itmId) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this stock?');">
                         @csrf

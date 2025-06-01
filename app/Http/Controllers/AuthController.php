@@ -37,34 +37,40 @@ class AuthController extends Controller
      }
      
 
-     public function loginp(Request $request)
-     {
-         // Validate the incoming request
-         $request->validate([
-             'user_name' => 'required', // Assuming email is used as user_id
-             'password' => 'required',
-         ]);
- 
-         // Check if customer with the given email exists
-         $customer = Customer::where('user_name', $request->user_name)->first();
- 
-         if (!$customer) {
-             return back()->withErrors(['user_name' => 'No user found with this email.']);
-         }
- 
-         // Check if password matches
-         if ($customer->password !== $request->password) {
-             return back()->withErrors(['user_name' => 'Incorrect password.']);
-         }
- 
-         // If login is successful, set the session for the customer
-         Session::put('customerId', $customer->customerId);
-         Session::put('customerName', $customer->name);
-        //  dd(session('customerId'));
-        // dd(session()->all());
-         // Redirect to the dashboard
-         return redirect()->route('patient.dashboard');
-     }
+   public function loginp(Request $request)
+{
+    $request->validate([
+        'login_id' => 'required',
+        'password' => 'required',
+    ]);
+
+    // Try to find by user_name OR phone
+    $customer = \App\Models\Customer::where('user_name', $request->login_id)
+        ->orWhere('phone', $request->login_id)
+        ->first();
+
+    if (!$customer) {
+        return back()->withInput()->withErrors([
+            'login_id' => 'No user found with this User ID or Phone.',
+        ]);
+    }
+
+    // Check password (plain text)
+    if ($customer->password !== $request->password) {
+        return back()->withInput()->withErrors([
+            'password' => 'Incorrect password.',
+        ]);
+    }
+
+    // Set session and login
+    session([
+        'customerId' => $customer->customerId,
+        'customerName' => $customer->name,
+    ]);
+
+    return redirect()->route('patient.dashboard');
+}
+
 
 
 

@@ -17,6 +17,7 @@
 
         <!-- Icons -->
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
     </head>
 

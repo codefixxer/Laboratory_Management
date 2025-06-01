@@ -71,6 +71,7 @@
             };
             </script>
              @yield('scripts')
+             @stack('scripts')
             @include('sampler.layouts.scripts')
 
 

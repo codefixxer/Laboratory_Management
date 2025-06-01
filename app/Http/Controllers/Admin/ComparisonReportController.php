@@ -58,7 +58,7 @@ class ComparisonReportController extends Controller
             'user'   => $d->user->name,
             'detail' => $d->debitDetail,
             'amount' => $d->debitAmount,
-            'date'   => Carbon::parse($d->createdDate)->toDateString(),
+            'date'   => Carbon::parse($d->created_at)->toDateString(),
         ]));
 
         Stock::all()->each(fn($s) => $allExpenses->push([
@@ -66,7 +66,7 @@ class ComparisonReportController extends Controller
             'user'   => '-',
             'detail' => "{$s->itemName} ({$s->itmQnt}×₹{$s->itmPrice})",
             'amount' => $s->itmQnt * $s->itmPrice,
-            'date'   => Carbon::parse($s->createdDate)->toDateString(),
+            'date'   => Carbon::parse($s->created_at)->toDateString(),
         ]));
 
         Credit::with('user')->get()->each(fn($c) => $allExpenses->push([
@@ -74,7 +74,7 @@ class ComparisonReportController extends Controller
             'user'   => $c->user->name,
             'detail' => $c->creditDetail,
             'amount' => -1 * $c->creditAmount,
-            'date'   => Carbon::parse($c->createdDate)->toDateString(),
+            'date'   => Carbon::parse($c->created_at)->toDateString(),
         ]));
 
         // Apply same filters on the expense collection

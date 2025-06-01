@@ -11,7 +11,7 @@ class Stock extends Model
 
     protected $table = 'stocks';
     protected $primaryKey = 'itmId';
-    protected $fillable = ['userId','itemName','itemDetail','expDate','itmQnt','itmPrice','createdDate'];
+    protected $fillable = ['userId','itemName','itemDetail','expDate','itmQnt','itmPrice','created_at'];
 
     public function user()
     {

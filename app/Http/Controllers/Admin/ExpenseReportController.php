@@ -14,10 +14,10 @@ class ExpenseReportController extends Controller
     {
         // Fetch all debits (with user) and stocks
         $debits = Debit::with('user')
-                       ->orderBy('createdDate', 'desc')
+                       ->orderBy('created_at', 'desc')
                        ->get();
 
-        $stocks = Stock::orderBy('createdDate', 'desc')
+        $stocks = Stock::orderBy('created_at', 'desc')
                        ->get();
 
         // Totals

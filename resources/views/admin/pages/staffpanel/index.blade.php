@@ -36,7 +36,7 @@
                                 <td>{{ $panel->credits }}</td>
                                 <td>{{ $panel->remainingCredits }}</td>
                                 {{-- If you're using the separate date column --}}
-                                <td>{{ $panel->createdDate ? $panel->createdDate : '-' }}</td>
+                                <td>{{ $panel->created_at ? $panel->created_at : '-' }}</td>
                                 {{-- Or if you prefer the default Laravel created_at: --}}
                                 {{-- <td>{{ $panel->created_at->format('Y-m-d') }}</td> --}}
 

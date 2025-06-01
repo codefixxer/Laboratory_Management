@@ -73,8 +73,8 @@ class StaffPanelController extends Controller
             // Increase remaining credits by the new amount
             $panel->remainingCredits += $validatedData['credits'];
     
-            // Optionally update createdDate or other fields if needed
-            // $panel->createdDate = now()->format('Y-m-d');
+            // Optionally update created_at or other fields if needed
+            // $panel->created_at = now()->format('Y-m-d');
     
             $panel->save();
     
@@ -85,7 +85,7 @@ class StaffPanelController extends Controller
                 'userId'           => $validatedData['userId'],
                 'credits'          => $validatedData['credits'],
                 'remainingCredits' => $validatedData['credits'], // new record has the same total + remaining
-                'createdDate'      => now()->format('Y-m-d'),
+                'created_at'      => now()->format('Y-m-d'),
             ]);
     
             $message = 'New Staff Panel record created successfully.';
@@ -126,7 +126,7 @@ class StaffPanelController extends Controller
             'userId'           => 'required|exists:users,id',
             'credits'          => 'required|numeric',
             'remainingCredits' => 'required|numeric',
-            'createdDate'      => 'nullable|date',
+            'created_at'      => 'nullable|date',
         ]);
 
         $staffPanel->update($validatedData);

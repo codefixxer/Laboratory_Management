@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('userId'); // Foreign Key for users
             $table->decimal('debitAmount', 10, 2);
             $table->text('debitDetail')->nullable();
-            $table->date('createdDate');
+            $table->date('created_at');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
                         $table->timestamps();
 

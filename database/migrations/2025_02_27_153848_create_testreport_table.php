@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('ctId'); // Foreign key from customer_tests table
             $table->unsignedBigInteger('reporterId'); // Foreign key from users table
             $table->string('signStatus')->nullable();
-            $table->timestamp('createdDate')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
 
             // Foreign key constraints
             $table->foreign('ctId')->references('ctId')->on('customer_tests')->onDelete('cascade');

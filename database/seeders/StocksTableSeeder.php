@@ -26,7 +26,7 @@ class StocksTableSeeder extends Seeder
                 'expDate'       => Carbon::now()->addMonths(rand(6, 24))->format('Y-m-d'),
                 'itmQnt'        => rand(10, 1000),
                 'itmPrice'      => rand(1, 100),
-                'createdDate'   => Carbon::now()->subDays(rand(1, 60))->format('Y-m-d'),
+                'created_at'   => Carbon::now()->subDays(rand(1, 60))->format('Y-m-d'),
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
             ];

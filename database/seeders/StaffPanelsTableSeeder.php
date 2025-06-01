@@ -22,7 +22,7 @@ class StaffPanelsTableSeeder extends Seeder
                 'userId'           => rand(1, 6),
                 'credits'          => $credits,
                 'remainingCredits' => $remainingCredits,
-                'createdDate'      => Carbon::now()->subDays(rand(1, 90))->format('Y-m-d'),
+                'created_at'      => Carbon::now()->subDays(rand(1, 90))->format('Y-m-d'),
                 'created_at'       => Carbon::now(),
                 'updated_at'       => Carbon::now(),
             ];

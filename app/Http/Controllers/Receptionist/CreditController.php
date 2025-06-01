@@ -25,14 +25,14 @@ class CreditController extends Controller
         $request->validate([
             'creditAmount' => 'required|numeric|min:0',
             'creditDetail' => 'required|string',
-            'createdDate' => 'required|date'
+            'created_at' => 'required|date'
         ]);
 
         Credit::create([
             'userId' => Auth::id(),
             'creditAmount' => $request->creditAmount,
             'creditDetail' => $request->creditDetail,
-            'createdDate' => $request->createdDate
+            'created_at' => $request->created_at
         ]);
 
         return redirect()->route('credit.index')->with('success', 'Credit transaction added successfully.');

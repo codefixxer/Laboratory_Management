@@ -64,14 +64,26 @@
                 <div class="tab-pane fade show active p-3" id="personal" role="tabpanel" aria-labelledby="personal-tab">
                     <h4>Personal Info</h4>
 
-                    <div class="mb-3">
-                        <label> Username <span class="text-danger">*</span></label>
-                        <div class="d-flex">
-                            <input type="text" class="form-control" name="user_name" id="generatedUsername" readonly>
-                            <button type="button" class="btn btn-outline-secondary" id="copyButton"
-                                style="margin-left: 10px;">Copy</button>
-                        </div>
-                    </div>
+                  <div class="mb-3">
+    <div class="row g-2">
+        <!-- Username (50%) -->
+        <div class="col-md-6">
+            <label>Username <span class="text-danger">*</span></label>
+            <div class="d-flex">
+                <input type="text" class="form-control" name="user_name" id="generatedUsername" readonly>
+            </div>
+        </div>
+        <!-- Password (50%) -->
+        <div class="col-md-6">
+            <label>Password</label>
+            <div class="d-flex">
+                <input type="text" class="form-control" name="password" id="generatedPassword" readonly>
+                <button type="button" class="btn btn-outline-primary ms-2" id="changePasswordBtn">Change</button>
+            </div>
+        </div>
+    </div>
+</div>
+
                     <div class="mb-3">
                         <label>Relation</label>
                         <select name="relation" class="form-select">
@@ -459,6 +471,37 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.21/dist/sweetalert2.all.min.js"></script>
+<script>
+function generateRandomPassword(length = 8) {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@$";
+    let password = "";
+    for (let i = 0; i < length; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
+}
+
+function setRandomPassword() {
+    document.getElementById('generatedPassword').value = generateRandomPassword(8);
+}
+
+// On load, set initial password
+document.addEventListener('DOMContentLoaded', function() {
+    setRandomPassword();
+
+    // Change password button
+    document.getElementById('changePasswordBtn').addEventListener('click', function() {
+        setRandomPassword();
+    });
+
+    // (Optional) Copy Username button
+    document.getElementById('copyButton').addEventListener('click', function() {
+        const usernameInput = document.getElementById('generatedUsername');
+        usernameInput.select();
+        document.execCommand('copy');
+    });
+});
+</script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -479,29 +522,7 @@
             });
 
 
-            document.addEventListener('DOMContentLoaded', function() {
-                const copyButton = document.getElementById('copyButton');
-                const usernameInput = document.getElementById('generatedUsername');
-                const successAlertTemplate = `
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Username copied to clipboard
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    `;
 
-                // Copy username to clipboard
-                copyButton.addEventListener('click', function() {
-                    // Select the text field
-                    usernameInput.select();
-                    usernameInput.setSelectionRange(0, 99999); // For mobile devices
-
-                    // Copy the text inside the text field
-                    document.execCommand("copy");
-
-                    // Insert the success alert into the container
-                    document.querySelector('.container').insertAdjacentHTML('afterbegin', successAlertTemplate);
-                });
-            });
         </script>
 
         <script>

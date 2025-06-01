@@ -14,7 +14,7 @@ class TestReport extends Model
         'ctId',
         'reporterId', // ✅ Ensure this exists
         'signStatus',
-        'createdDate',
+        'created_at',
     ];
 
     public function customerTest()

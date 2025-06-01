@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 // use App\Http\Controllers\DebitController;
@@ -26,33 +27,40 @@ use App\Http\Controllers\Admin\ReferenceRangeController;
 use App\Http\Controllers\Receptionist\TestSaveController;
 use App\Http\Controllers\Admin\ComparisonReportController;
 use App\Http\Controllers\Admin\ReferenceRangeChildController;
+use App\Http\Controllers\Manager\ManagerDashboardController;
 use App\Http\Controllers\Receptionist\ReceptionistController;
+use App\Http\Controllers\Receptionist\ReceptionistDashboardController;
 use App\Http\Controllers\Receptionist\ReceptionistReportController;
 use App\Http\Controllers\Receptionist\ReceptionistExpenseReportController;
 use App\Http\Controllers\Receptionist\ReceptionostComparisonReportController;
+use App\Http\Controllers\Reporter\ReporterDashboardController;
+use App\Http\Controllers\Sampler\SamplerDashboardController;
 
 Route::get('/auth/staff/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('signin', [AuthController::class, 'login'])->name('login.post');
 Route::post('patient/login', [AuthController::class, 'loginp'])->name('patient.login.post');
 Route::get('patient/login', [AuthController::class, 'patient'])->name('patient.login');
-Route::get('/patient/reports/completed', [PatientController::class, 'completedReports'])->name('patient.reports.completed');
-// Route::get('/patient/report/{id}', [PatientController::class, 'viewReport'])
-//     ->name('patient.report.view');
-// Route::get('/patient/report/{customerId}/{testId}', [PatientController::class, 'viewReport'])
-//     ->name('patient.report.view');
-Route::get('/patient/report/{customerId}/{testId}', [PatientController::class, 'viewReport'])
-    ->name('patient.report.view');
-
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/permission-denied', [AuthController::class, 'roleerror'])->name('auth.errors.role');
 
 
-Route::get('patient/dashboard', function() {
-    return view('patient.pages.dashboard');
-})->name('patient.dashboard');
+
+
+
+Route::get('patient/report/download/{reportId}', [PatientController::class, 'downloadReport'])
+    ->name('patient.report.download');
+
+
+
+Route::get('patient/dashboard', [PatientController::class, 'dashboard'])->name('patient.dashboard');
 Route::get('/pending-reports', [PatientController::class, 'pendingReports'])->name('patient.pendingReports');
+
+Route::get('/patient/reports/completed', [PatientController::class, 'completedReports'])->name('patient.reports.completed');
+
+Route::get('/patient/report/{customerId}/{testId}', [PatientController::class, 'viewReport'])
+    ->name('patient.report.view');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -61,13 +69,13 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->middleware(['role:admin'])->group(function () {
 
         Route::get('/sale_report', [ReportController::class, 'index'])->name('admin.sale_report');
-Route::get('/expense_report', [ExpenseReportController::class, 'index'])
-     ->name('admin.expense_report');
-Route::get('/comparison_report', [ComparisonReportController::class, 'index'])
-     ->name('admin.comparison_report');
+        Route::get('/expense_report', [ExpenseReportController::class, 'index'])
+            ->name('admin.expense_report');
+        Route::get('/comparison_report', [ComparisonReportController::class, 'index'])
+            ->name('admin.comparison_report');
 
 
-        Route::get('/', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
         Route::prefix('loyalty-card')->group(function () {
             Route::get('/pending', [LcController::class, 'pending'])->name('admin.lc.pending');
@@ -172,30 +180,30 @@ Route::get('/comparison_report', [ComparisonReportController::class, 'index'])
 
 
 
-// routes/web.php, inside receptionist middleware
-Route::get(
-    'invoice/{customerId}',
-    [TestSaveController::class,'show']
-)->name('receptionist.invoice');
+        // routes/web.php, inside receptionist middleware
+        Route::get(
+            'invoice/{customerId}',
+            [TestSaveController::class, 'show']
+        )->name('receptionist.invoice');
 
 
-Route::get('/sale_report', [ReceptionistReportController::class, 'index'])
-     ->name('receptionist.sale_report');
+        Route::get('/sale_report', [ReceptionistReportController::class, 'index'])
+            ->name('receptionist.sale_report');
 
-Route::get('/receptionist/comparison_report', [ReceptionostComparisonReportController::class, 'index'])
-     ->name('receptionist.comparison_report');
+        Route::get('/receptionist/comparison_report', [ReceptionostComparisonReportController::class, 'index'])
+            ->name('receptionist.comparison_report');
 
-Route::get(
-    '/receptionist/expenses',
-    [ReceptionistExpenseReportController::class, 'index']
-)->name('receptionist.expenses');
+        Route::get(
+            '/receptionist/expenses',
+            [ReceptionistExpenseReportController::class, 'index']
+        )->name('receptionist.expenses');
 
 
-        Route::get('/', [UserController::class, 'receptionistDashboard'])->name('receptionist.dashboard');
+        Route::get('/', [ReceptionistDashboardController::class, 'index'])->name('receptionist.dashboard');
         Route::get('/testsave', [TestSaveController::class, 'showForm'])
             ->name('testsave.showForm');
-            Route::get('pay-pending/{customerId}', [ReceptionistController::class, 'payPending'])
-    ->name('receptionist.pay.pending');
+        Route::get('pay-pending/{customerId}', [ReceptionistController::class, 'payPending'])
+            ->name('receptionist.pay.pending');
         Route::get('/customers', [ReceptionistController::class, 'index'])->name('receptionist.customers');
         Route::get('/customers/revoked', [ReceptionistController::class, 'revoked'])->name('receptionist.customers.revoked');
         Route::get('/customers/{id}',  [ReceptionistController::class, 'show'])->name('receptionist.customer.details');
@@ -229,7 +237,7 @@ Route::get(
 
     Route::middleware('role:reporter')->prefix('reporter')->group(function () {
 
-        Route::get('/', [UserController::class, 'reporterDashboard'])->name('reporter.dashboard');
+        Route::get('/', [ReporterDashboardController::class, 'index'])->name('reporter.dashboard');
         Route::get('/reports', [TestReportController::class, 'index'])->name('reporter.reports');
         // Route::get('/reporter/test-details/{customerId}', [TestReportController ::class, 'testDetails'])->name('reporter.test.details');
         Route::get('/reporter/view-test-details/{customerId}', [TestReportController::class, 'viewTestDetails'])->name('reporter.viewTestDetails');
@@ -242,7 +250,6 @@ Route::get(
         Route::put('/reporter/report/{reportId}/update', [TestReportController::class, 'updateReport'])->name('reporter.updateReport');
         Route::get('/report/view/{reportId}', [TestReportController::class, 'viewReport'])->name('report.view');
         Route::post('/report/update/{reportId}', [TestReportController::class, 'updateReport'])->name('report.update');
-
     });
 
 
@@ -255,7 +262,7 @@ Route::get(
 
     Route::middleware('role:sampler')->prefix('sampler')->group(function () {
 
-        Route::get('/', [UserController::class, 'samplerDashboard'])->name('sampler.dashboard');
+        Route::get('/', [SamplerDashboardController::class, 'index'])->name('sampler.dashboard');
         Route::get('/pending-tests', [SamplerController::class, 'pendingTests'])->name('sampler.pendingTests');
         Route::get('/test-details/{id}', [SamplerController::class, 'testDetails'])->name('sampler.testDetails');
         Route::post('/sampler/collect-sample', [SamplerController::class, 'collectSample'])->name('sampler.collectSample');
@@ -270,7 +277,7 @@ Route::get(
 
     Route::middleware('role:manager')->prefix('manager')->group(function () {
 
-        Route::get('/', [UserController::class, 'managerDashboard'])->name('manager.dashboard');
+        Route::get('/', [ManagerDashboardController::class, 'index'])->name('manager.dashboard');
         Route::get('/pending-reports', [ManagerController::class, 'pendingReports'])->name('pendingReports');
         Route::get('/view-report/{reportId}', [ManagerController::class, 'viewReport'])->name('viewReport');
         Route::post('/update-sign-status/{reportId}', [ManagerController::class, 'updateSignStatus'])->name('manager.update-sign-status');

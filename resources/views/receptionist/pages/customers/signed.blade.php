@@ -40,7 +40,7 @@
                         <td>{{ $report->customerTest->customer->name ?? 'N/A' }}</td>
                         <td>{{ optional($report->customerTest->test)->testName ?? 'N/A' }}</td>
                         <td>{{ ucfirst($report->signStatus) }}</td>
-                        <td>{{ $report->createdDate }}</td>
+                        <td>{{ $report->created_at }}</td>
                         <td>
                             @if($payment && $payment->pending == 0) 
                                 <a href="{{ route('receptionist.customer.details', $report->reportId) }}" class="btn btn-info">View Report</a>

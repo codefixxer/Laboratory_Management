@@ -25,14 +25,14 @@ class DebitController extends Controller
         $request->validate([
             'debitAmount' => 'required|numeric|min:0',
             'debitDetail' => 'required|string',
-            'createdDate' => 'required|date'
+            'created_at' => 'required|date'
         ]);
 
         Debit::create([
             'userId' => Auth::id(),
             'debitAmount' => $request->debitAmount,
             'debitDetail' => $request->debitDetail,
-            'createdDate' => $request->createdDate
+            'created_at' => $request->created_at
         ]);
 
         return redirect()->route('debit.index')->with('success', 'Debit transaction added successfully.');

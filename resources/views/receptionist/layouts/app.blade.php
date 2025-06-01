@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-   
+     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 @include('receptionist.layouts.head')
 
     <body data-menu-color="light" data-sidebar="default">
@@ -71,6 +72,8 @@
             };
             </script>
              @yield('scripts')
+                 @stack('scripts')
+
             @include('receptionist.layouts.scripts')
 
 

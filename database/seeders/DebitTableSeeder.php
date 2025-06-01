@@ -19,7 +19,7 @@ class DebitTableSeeder extends Seeder
                 'userId'       => rand(1, 6),
                 'debitAmount'  => $faker->randomFloat(2, 50, 1000), // Amount between 50 and 1000
                 'debitDetail'  => $faker->sentence(3),
-                'createdDate'  => Carbon::now()->subDays(rand(1, 60))->format('Y-m-d'),
+                'created_at'  => Carbon::now()->subDays(rand(1, 60))->format('Y-m-d'),
                 'created_at'   => Carbon::now(),
                 'updated_at'   => Carbon::now(),
             ];

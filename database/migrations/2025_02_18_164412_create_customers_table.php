@@ -25,7 +25,7 @@ return new class extends Migration
                 $table->unsignedBigInteger('staffPanelId')->nullable(); // Staff panel reference
                 $table->text('comment')->nullable();
                 $table->decimal('testDiscount', 8, 2)->default(0); // If discount applies
-                $table->string('password', 10)->default(Str::random(5)); // Auto-generate 5-character alphanumeric password
+                $table->string('password', 50)->default('password123'); 
                 $table->timestamps();
 
             });

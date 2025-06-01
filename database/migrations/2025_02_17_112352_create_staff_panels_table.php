@@ -12,7 +12,7 @@ return new class extends Migration
             $table->unsignedBigInteger('userId');
             $table->decimal('credits', 8, 2)->default(0);
             $table->decimal('remainingCredits', 8, 2)->default(0);
-            $table->date('createdDate')->nullable();
+            $table->date('created_at')->nullable();
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
                         $table->timestamps();
 

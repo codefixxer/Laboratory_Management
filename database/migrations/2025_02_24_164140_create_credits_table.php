@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('userId'); // Foreign Key for users
             $table->decimal('creditAmount', 10, 2);
             $table->text('creditDetail')->nullable();
-            $table->date('createdDate');
+            $table->date('created_at');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
                         $table->timestamps();
 

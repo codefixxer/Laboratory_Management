@@ -21,7 +21,7 @@ class CustomerTestsTableSeeder extends Seeder
             $records[] = [
                 'addTestId'   => $addTestId,
                 'customerId'  => $customerId,
-                'createdDate' => Carbon::now()->subDays(rand(0, 10)),
+                'created_at' => Carbon::now()->subDays(rand(0, 10)),
                 'testStatus'  => $status,
                 'reportDate'  => $reportDate,
                 'created_at'  => Carbon::now(),

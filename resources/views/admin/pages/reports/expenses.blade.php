@@ -78,7 +78,7 @@
             <tbody>
               @foreach($debits as $d)
               <tr
-                data-date="{{ \Carbon\Carbon::parse($d->createdDate)->toDateString() }}"
+                data-date="{{ \Carbon\Carbon::parse($d->created_at)->toDateString() }}"
                 data-search="{{ strtolower($d->user->name.' '.$d->debitDetail) }}"
                 data-amount="{{ $d->debitAmount }}"
               >
@@ -86,7 +86,7 @@
                 <td>{{ $d->user->name }}</td>
                 <td>{{ $d->debitDetail }}</td>
                 <td class="text-end text-danger">₹{{ number_format($d->debitAmount, 2) }}</td>
-                <td>{{ \Carbon\Carbon::parse($d->createdDate)->format('Y-m-d') }}</td>
+                <td>{{ \Carbon\Carbon::parse($d->created_at)->format('Y-m-d') }}</td>
               </tr>
               @endforeach
             </tbody>
@@ -116,7 +116,7 @@
               @foreach($stocks as $s)
               @php $cost = $s->itmQnt * $s->itmPrice; @endphp
               <tr
-                data-date="{{ \Carbon\Carbon::parse($s->createdDate)->toDateString() }}"
+                data-date="{{ \Carbon\Carbon::parse($s->created_at)->toDateString() }}"
                 data-search="{{ strtolower($s->itemName.' '.$s->itemDetail) }}"
                 data-amount="{{ $cost }}"
               >
@@ -124,7 +124,7 @@
                 <td>{{ $s->itemName }}</td>
                 <td>{{ $s->itemDetail }}</td>
                 <td class="text-end">₹{{ number_format($cost, 2) }}</td>
-                <td>{{ \Carbon\Carbon::parse($s->createdDate)->format('Y-m-d') }}</td>
+                <td>{{ \Carbon\Carbon::parse($s->created_at)->format('Y-m-d') }}</td>
               </tr>
               @endforeach
             </tbody>

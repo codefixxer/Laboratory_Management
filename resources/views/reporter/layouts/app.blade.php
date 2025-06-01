@@ -71,6 +71,7 @@
             };
             </script>
              @yield('scripts')
+             @stack('scripts')
             @include('reporter.layouts.scripts')
 
 

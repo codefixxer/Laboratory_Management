@@ -12,13 +12,14 @@ class Customer extends Model
     protected $keyType = 'int';
 
     // If you do NOT want to use Eloquent's default timestamps:
-      // because we have createdDate
+      // because we have created_at
 
     protected $fillable = [
         'userId',
         'relation',
         'title',
         'user_name',
+        'password',
         'name',
         'email',
         'phone',
@@ -54,14 +55,14 @@ public function user()
     {
         return $this->hasMany(CustomerTest::class, 'customerId');
     }
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($customer) {
-            $customer->password = Str::random(10); // Ensures every new customer gets a unique password
-        });
-    }
+    //     static::creating(function ($customer) {
+    //         $customer->password = Str::random(10); 
+    //     });
+    // }
     public function payment()
     {
         return $this->hasOne(Payment::class, 'customerId', 'customerId');

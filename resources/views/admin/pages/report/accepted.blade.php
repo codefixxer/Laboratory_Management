@@ -25,7 +25,7 @@
                         <td>{{ $report->customerTest->customer->name ?? 'N/A' }}</td>
                         <td>{{ $report->customerTest->test->testName ?? 'N/A' }}</td>
                         <td>{{ ucfirst($report->signStatus) }}</td>
-                        <td>{{ $report->createdDate }}</td>
+                        <td>{{ $report->created_at }}</td>
                         <td>
                             <a href="{{ route('report.views', ['reportId' => $report->reportId]) }}" class="btn btn-info">
                                 View Report
